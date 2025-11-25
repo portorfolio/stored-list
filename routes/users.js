@@ -3,13 +3,13 @@ var router = express.Router();
 const Emojis = require('../models/emojis')
 
 /* GET users listing. */
-router.get('/all', async function(req, res, next) {
-  try{
-    const emojis = (await Emojis.find()).toSorted({
+router.get('/all', async function (req, res, next) {
+  try {
+    const emojis = (await Emojis.find()).sort({
       createdAt: -1
     })
     res.json(emojis)
-  } catch (error){
+  } catch (error) {
     next(error)
   }
 });

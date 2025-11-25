@@ -1,7 +1,11 @@
 const mongoose = require('mongoose')
 
 const emojisSchema = new mongoose.Schema({
-    name: String
+    1: String,
+    2: String,
+    3: String,
+    4: String,
+    5: String
 })
 
-module.exports = mongoose.model('Emojis',emojisSchema)
+module.exports = mongoose.model('Emojis', emojisSchema)
