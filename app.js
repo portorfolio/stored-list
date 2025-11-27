@@ -1,4 +1,6 @@
 require('dotenv').config();
+const mongoose = require('mongoose')
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -6,10 +8,18 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
-var emojisRouter = require('./models/emojis')
+var emojisRouter = require('./routes/emojis');
 
 var app = express();
+
+//connect to mongodb
+mongoose.connect(process.env.MONGO_URL)
+  .then(() => {
+    console.log('Connected')
+  })
+  .catch((error) => {
+    console.log(error)
+  })
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,8 +32,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
-app.use('/emojis', emojisRouter)
+app.use('/emojis', emojisRouter);
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
