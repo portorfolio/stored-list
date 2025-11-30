@@ -1,6 +1,13 @@
 body {
+  background-image: url('/images/1.png');
+  background-size: cover;
   padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+  font-family: 'Sylfaen Regular', serif;
+}
+
+@font-face {
+  font-family: 'Sylfaen Regular';
+  src: url('../fonts/sylfaen.woff') format('woff');
 }
 
 #popup {
@@ -37,5 +44,6 @@ body {
 }
 
 .emoticon-box {
-  border: 1px solid black;
+  font-size: 5vh;
+
 }
