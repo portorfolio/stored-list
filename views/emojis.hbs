@@ -6,8 +6,7 @@
     </div>
 </div>
 
-<ul class="emoticon-box">
-    {{#each emojis}}
-    <li>{{one}} {{two}} {{three}} {{four}} {{five}}</li>
-    {{/each}}
-</ul>
+{{#each emojis}}
+<p id="emoticon-{{@index}}" draggable="true" onmousedown="dragElement(this)">{{one}} {{two}} {{three}} {{four}} {{five}}
+</p>
+{{/each}}

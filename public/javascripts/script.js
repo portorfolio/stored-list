@@ -1,3 +1,4 @@
+//popup window function
 document.addEventListener('DOMContentLoaded', function () {
     const popupOverlay = document.getElementById('popup');
     const closePopupButton = document.getElementById('close-popup');
@@ -10,3 +11,5 @@ document.addEventListener('DOMContentLoaded', function () {
         popupOverlay.style.display = 'none';
     });
 });
+
+//draggable emoticons
