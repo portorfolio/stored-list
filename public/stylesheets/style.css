@@ -9,13 +9,6 @@ body {
   position: relative;
 }
 
-/* @font-face {
-  font-family: 'Sylfaen Regular';
-  font-style: normal;
-  font-weight: normal;
-  src: url('../fonts/sylfaen.woff') format('woff');
-} */
-
 #popup {
   display: none;
   position: fixed;
