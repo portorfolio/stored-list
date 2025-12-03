@@ -29,6 +29,6 @@ Using the initial code provided:
 2. Complete the requirements
 3. Push your updates to your forked repository
 4. Go to [Render](https://render.com/) and create an account. If you create your Render account with your Github login, then all your repos will be listed to quickly create a project
-5. Add a new Web Service linked to your repo
+5. Add a new Web Service linked to your repo (https://stored-list-ui1v.onrender.com)
 6. Create a Pull request and include a link to your live Render link the description
 7. Share your app and database in the next class!
