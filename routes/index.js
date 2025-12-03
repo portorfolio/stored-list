@@ -6,7 +6,6 @@ const Emojis = require('../models/emojis')
 router.get('/', async function (req, res) {
   try {
     const emojis = await Emojis.find().lean()
-    console.log(emojis)
     res.render('index', { emojis })
   } catch (error) {
     console.log(error)
