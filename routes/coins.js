@@ -12,11 +12,17 @@ router.get('/', async function (req, res, next) {
   }
 });
 
-router.get('/all', async function () {
+router.get('/all', async function (req, res) {
   let totalVal = 0;
-  const coins = Coins.find()
-  res.json(items)
-})
+  try {
+    const coins = await Coins.find()
+    res.json(coins)
+  } catch (error) {
+    console.log(error);
+    res.send('Oops')
+  }
+}
+)
 
 //find item by specific id
 router.get('/:id', async function (req, res) {

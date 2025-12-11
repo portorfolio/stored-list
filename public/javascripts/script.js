@@ -1,10 +1,7 @@
 // ADD YOUR CODE BELOW 
 
 // 1. Start with an array of strings (ex: "grapes", "bread", "tea")
-let todoItems = [
-    // "grapes", "bread", "tea" 
-    // add more items here
-];
+let coinItems = [];
 
 
 // 2. Create variables for each interactive DOM element
@@ -16,15 +13,15 @@ const sortBtn = document.getElementById('sort');
 
 const clearBtn = document.getElementById('clear');
 
-let inputvalue = document.getElementById('text').value;
+// let inputvalue = document.getElementById('text').value;
 
 function updateList() {
     document.getElementById("list").innerHTML = ''
-    for (let i = 0; i < todoItems.length; i++) {
+    for (let i = 0; i < coinItems.length; i++) {
         const liElement = document.createElement('li');
-        liElement.innerText = todoItems[i].name;
-        liElement.id = todoItems[i]._id;
-        if (todoItems[i].completed) {
+        liElement.innerText = coinItems[i].coin + ': $ ' + coinItems[i].dolVal;
+        liElement.id = coinItems[i]._id;
+        if (coinItems[i].completed) {
             liElement.classList.add('completed')
         }
 
@@ -33,13 +30,13 @@ function updateList() {
         deleteButton.innerHTML = 'x';
         deleteButton.addEventListener('click', function (e) {
             e.stopPropagation();
-            deleteItem(todoItems[i]._id);
+            deleteItem(coinItems[i]._id);
         })
 
         // Add editing function 
         liElement.addEventListener('click', function () {
             if (!liElement.classList.contains('completed')) {
-                updateItem(todoItems[i]._id, {
+                updateCoin(coinItems[i]._id, {
                     completed: true
                 });
             }
@@ -52,25 +49,29 @@ function updateList() {
 
 // 4. Handle adding a new item when the form is submitted
 addItemButton.addEventListener('click', async function () {
-    let inputvalue = document.getElementById('text').value;
-    addItem(inputvalue);
+    let coinName = document.getElementById('coin-input').value;
+    let dollarValue = document.getElementById('dolval-input').value
+    addCoin(coinName, dollarValue);
+
+    document.getElementById('coin-input').value = '';
+    document.getElementById('dolval-input').value = '';
 });
 
 // 5. Sort items alphabetically when sortBtn is clicked
 sortBtn.addEventListener("click", () => {
-    todoItems.sort();
+    coinItems.sort();
     updateList()
 });
 
 // 6. Clear all items when clearBtn is clicked
 clearBtn.addEventListener("click", () => {
-    todoItems = [''];
+    coinItems = [''];
     updateList();
 });
 
 
 async function getCoins() {
-    const response = await fetch('/coins');
+    const response = await fetch('/all');
     const data = await response.json();
     console.log('coins', data);
     coinItems = data;
@@ -79,12 +80,12 @@ async function getCoins() {
 
 getCoins();
 
-async function addCoin(value) {
+async function addCoin(coinName, dollarValue) {
     const postData = {
-        coin: value,
-        dolVal: value,
+        coin: coinName,
+        dolVal: dollarValue ? Number(dollarValue) : 0
     }
-    const response = await fetch('/coins', {
+    const response = await fetch('/', {
         method: 'POST', // Specify the HTTP method as POST
         headers: {
             'Content-Type': 'application/json' // Indicate that the body is JSON
@@ -97,7 +98,7 @@ async function addCoin(value) {
 }
 
 async function updateCoin(id, updatedValues) {
-    const response = await fetch('/coins' + id, {
+    const response = await fetch('/' + id, {
         method: 'PUT',
         headers: {
             'Content-Type': 'application/json' // Indicate that the body is JSON
@@ -110,7 +111,7 @@ async function updateCoin(id, updatedValues) {
 }
 
 async function deleteItem(id) {
-    const response = await fetch('/coins' + id, {
+    const response = await fetch('/' + id, {
         method: 'DELETE',
     });
     const data = await response.json();
