@@ -1,7 +1,18 @@
-<h1>Coins</h1>
-<ul>
-{{#each list}}
-<li>{{coin}}: ${{dolVal}}</li>
-{{/each}}
+<header>
+    <h1>Coins</h1>
+</header>
+
+<div id="form">
+    <input id="text" placeholder="Add an item…" />
+    <button id="add-item-button">Add</button>
+</div>
+
+<div class="toolbar">
+    <button id="sort">Sort A–Z</button>
+    <button id="clear">Clear All</button>
+</div>
+
+<ul id="list">
 </ul>
 
+<script src="javascripts/script.js"></script>
